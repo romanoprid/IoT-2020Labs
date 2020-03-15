@@ -12,7 +12,7 @@ public class ProtectiveClothesTest {
 
     @Test
     public void testToString() {
-       ProtectiveClothes protectiveClothes = new ProtectiveClothes("Helmet", 100, "Gan",
+        ProtectiveClothes protectiveClothes = new ProtectiveClothes("Helmet", 100, "Gan",
                 "Ukraine",
                 "Leather", Purpose.GOALKEEPER, Level.MEDIUM);
         String expected = "Name=Helmet PriceInUAH=100.0 Producer=Gan ProducingCountry=Ukraine Material=Leather Purpose=GOALKEEPER ProtectionLevel=MEDIUM";

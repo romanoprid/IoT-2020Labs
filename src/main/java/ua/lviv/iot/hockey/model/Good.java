@@ -1,73 +1,83 @@
 package ua.lviv.iot.hockey.model;
 
 public class Good {
-    protected String name;
-    protected double priceInUAH;
-    protected String producer;
-    protected String producingCountry;
-    protected String material;
-    protected Purpose purpose;
+    private String name;
+    private double priceInUAH;
+    private String producer;
+    private String producingCountry;
+    private String material;
+    private Purpose purpose;
 
     public Good() {
 
     }
 
-    public Good(String name, double priceInUAH, String producer, String producingCountry, String material, Purpose purpose) {
-        this.name = name;
-        this.priceInUAH = priceInUAH;
-        this.producer = producer;
-        this.producingCountry = producingCountry;
-        this.material = material;
-        this.purpose = purpose;
+    public Good(final String title, final double price, final String maker, final String producingTown,
+                final String resource, final Purpose goal) {
+        this.name = title;
+        this.priceInUAH = price;
+        this.producer = maker;
+        this.producingCountry = producingTown;
+        this.material = resource;
+        this.purpose = goal;
     }
 
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public final void setName(final String title) {
+        this.name = title;
     }
 
-    public double getPriceInUAH() {
+    public final double getPriceInUAH() {
         return priceInUAH;
     }
 
-    public void setPriceInUAH(double priceInUAH) {
-        this.priceInUAH = priceInUAH;
+    public final void setPriceInUAH(final double price) {
+        this.priceInUAH = price;
     }
 
-    public String getProducer() {
+    public final String getProducer() {
         return producer;
     }
 
-    public void setProducer(String producer) {
-        this.producer = producer;
+    public final void setProducer(final String maker) {
+        this.producer = maker;
     }
 
-    public String getProducingCountry() {
+    public final String getProducingCountry() {
         return producingCountry;
     }
 
-    public void setProducingCountry(String producingCountry) {
-        this.producingCountry = producingCountry;
+    public final void setProducingCountry(final String producingTown) {
+        this.producingCountry = producingTown;
     }
 
-    public String getMaterial() {
+    public final String getMaterial() {
         return material;
     }
 
-    public void setMaterial(String material) {
-        this.material = material;
+    public final void setMaterial(final String resources) {
+        this.material = resources;
     }
 
-    public Purpose getPurpose() {
+    public final Purpose getPurpose() {
         return purpose;
     }
 
-    public void setPurpose(Purpose purpose) {
-        this.purpose = purpose;
+    public final void setPurpose(final Purpose goal) {
+        this.purpose = goal;
     }
 
-
+    @Override
+    public String toString() {
+        return
+                "Name=" + name + ' ' +
+                        "PriceInUAH=" + priceInUAH + ' ' +
+                        "Producer=" + producer + ' ' +
+                        "ProducingCountry=" + producingCountry + ' ' +
+                        "Material=" + material + ' ' +
+                        "Purpose=" + purpose;
+    }
 }
