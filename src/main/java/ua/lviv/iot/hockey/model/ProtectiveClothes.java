@@ -7,19 +7,24 @@ public class ProtectiveClothes extends Good {
 
     }
 
-    public ProtectiveClothes(String name, double priceInUAH, String producer, String producingCountry, String material, Purpose purpose, Level protectionLevel) {
+    public ProtectiveClothes(final String name, final double priceInUAH, final String producer,
+                             final String producingCountry,
+                             final String material, final Purpose purpose, final Level protection) {
         super(name, priceInUAH, producer, producingCountry, material, purpose);
-        this.protectionLevel = protectionLevel;
+        this.protectionLevel = protection;
     }
 
 
-    public Level getProtectionLevel() {
+    public final Level getProtectionLevel() {
         return protectionLevel;
     }
 
-    public void setProtectionLevel(Level protectionLevel) {
-        this.protectionLevel = protectionLevel;
+    public final void setProtectionLevel(final Level protection) {
+        this.protectionLevel = protection;
     }
-
-
+    @Override
+    public String toString() {
+        return super.toString() + " " +
+                "ProtectionLevel=" + protectionLevel;
+    }
 }

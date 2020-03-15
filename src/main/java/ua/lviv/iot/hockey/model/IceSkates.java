@@ -1,35 +1,32 @@
 package ua.lviv.iot.hockey.model;
 
 public class IceSkates extends Good {
-    private int bladeAmount;
     private double footSize;
 
     public IceSkates() {
 
     }
 
-    public IceSkates(String name, double priceInUAH, String producer, String producingCountry, String material,
-                     Purpose purpose, int bladeAmount, double footSize) {
+    public IceSkates(final String name, final double priceInUAH, final String producer, final String producingCountry,
+                     final String material, final Purpose purpose, double foot) {
         super(name, priceInUAH, producer, producingCountry, material, purpose);
-        this.bladeAmount = bladeAmount;
-        this.footSize = footSize;
+
+        this.footSize = foot;
     }
 
-    public int getBladeAmount() {
-        return bladeAmount;
-    }
 
-    public void setBladeAmount(int bladeAmount) {
-        this.bladeAmount = bladeAmount;
-    }
-
-    public double getFootSize() {
+    public final double getFootSize() {
         return footSize;
     }
 
-    public void setFootSize(double footSize) {
-        this.footSize = footSize;
+    public final void setFootSize(final double foot) {
+        this.footSize = foot;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + " " +
+                "FootSize=" + footSize;
+    }
 
 }

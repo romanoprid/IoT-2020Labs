@@ -1,11 +1,11 @@
 package ua.lviv.iot.hockey.model;
 
-import java.util.*;
+import java.util.Comparator;
 
 public class CompareByPrice implements Comparator<Good> {
     @Override
-    public int compare(Good goods, Good t1) {
-        return goods.getPriceInUAH() < t1.getPriceInUAH() ? -1 : goods.getPriceInUAH() == t1.getPriceInUAH() ? 0 : 1;
+    public final int compare(final Good goods, final Good t1) {
+        return Double.compare(goods.getPriceInUAH(), t1.getPriceInUAH());
     }
 }
 

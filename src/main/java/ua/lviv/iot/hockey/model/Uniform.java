@@ -2,35 +2,28 @@ package ua.lviv.iot.hockey.model;
 
 
 public class Uniform extends Good {
-    private String category;
     private Size size;
 
     public Uniform() {
 
     }
 
-    public Uniform(String name, double priceInUAH, String producer, String producingCountry, String material, Purpose purpose, String category, Size size) {
+    public Uniform(final String name, final double priceInUAH, final String producer, final String producingCountry,
+                   final String material, final Purpose purpose, final Size uniformSize) {
         super(name, priceInUAH, producer, producingCountry, material, purpose);
-        this.category = category;
-        this.size = size;
+        this.size = uniformSize;
     }
 
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public Size getSize() {
+    public final Size getSize() {
         return size;
     }
 
-    public void setSize(Size size) {
-        this.size = size;
+    public final void setSize(final Size uniformSize) {
+        this.size = uniformSize;
     }
-
-
+    @Override
+    public String toString() {
+        return super.toString() + " " +
+                "Size=" + size;
+    }
 }

@@ -4,8 +4,8 @@ import java.util.Comparator;
 
 public class CompareByNameDecrease implements Comparator<Good> {
     @Override
-    public int compare(Good goods, Good t1) {
-        return goods.getName().compareTo(t1.getName()) > 0 ? -1 : goods.getName().compareTo(t1.getName()) < 0 ? 1 : 0;
+    public final int compare(final Good goods, final Good t1) {
+        return Integer.compare(0, goods.getName().compareTo(t1.getName()));
     }
 }
 
