@@ -21,10 +21,52 @@ public class HockeyPuck extends Good {
         this.thickness = thick;
     }
 
+
+    public final void parse(final String s) {
+        System.out.println(s);
+        String[] mass = s.split(",");
+        int n = 0;
+        this.setName(mass[n]);
+        System.out.println(mass[n]);
+        n++;
+        this.setPriceInUAH(Double.parseDouble(mass[n]));
+        System.out.println("" + getPriceInUAH());
+        n++;
+        this.setProducer(mass[n]);
+        n++;
+        this.setProducingCountry(mass[n]);
+        n++;
+        this.setMaterial(mass[n]);
+        n++;
+        switch (mass[n]) {
+            case "GOALKEEPER":
+                this.setPurpose(Purpose.GOALKEEPER);
+                break;
+            case "FIELDPLAYER":
+                this.setPurpose(Purpose.FIELDPLAYER);
+                break;
+            default:
+                this.setPurpose(Purpose.FIELDPLAYER);
+        }
+        n++;
+        this.thickness = Double.parseDouble(mass[n]);
+        System.out.println("" + thickness);
+    }
+
     @Override
-    public  String toString() {
-        return super.toString() + " " +
-                "Thickness=" + thickness + " ";
+    public final String getHeaders() {
+        return super.getHeaders() + ",thickness";
+    }
+
+    @Override
+    public final String toCSV() {
+        return super.toCSV() + "," + thickness;
+    }
+
+    @Override
+    public final String toString() {
+        return super.toString() + " "
+                + "Thickness=" + thickness + " ";
     }
 
 }

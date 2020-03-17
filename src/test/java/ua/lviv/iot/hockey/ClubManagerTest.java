@@ -24,8 +24,7 @@ public class ClubManagerTest {
                 "Wood", Purpose.GOALKEEPER));
         String expected = "Name=Helmet PriceInUAH=200.0 Producer=North ProducingCountry=Ukraine Material=Leather Purpose=GOALKEEPER\n" +
                 "Name=HockeyPuck PriceInUAH=150.0 Producer=North ProducingCountry=Ukraine Material=Wood Purpose=GOALKEEPER\n";
-        String actual = "Name=Helmet PriceInUAH=200.0 Producer=North ProducingCountry=Ukraine Material=Leather Purpose=GOALKEEPER\n" +
-                "Name=HockeyPuck PriceInUAH=150.0 Producer=North ProducingCountry=Ukraine Material=Wood Purpose=GOALKEEPER\n";
+        String actual = clubManager.toString();
         assertEquals(expected, actual);
 
 
@@ -41,8 +40,8 @@ public class ClubManagerTest {
         clubManager.add(new Good("Helmet", 200.0, "North", "Ukraine",
                 "Leather", Purpose.GOALKEEPER));
         List<Good> expected = new LinkedList<Good>();
-        expected.add(new Good("Helmet",200.0,"North","Ukraine","Leather",Purpose.GOALKEEPER));
-        expected.add(new Good("Helmet",200.0,"North","Ukraine","Leather",Purpose.GOALKEEPER));
+        expected.add(new Good("Helmet", 200.0, "North", "Ukraine", "Leather", Purpose.GOALKEEPER));
+        expected.add(new Good("Helmet", 200.0, "North", "Ukraine", "Leather", Purpose.GOALKEEPER));
         List<Good> actual = clubManager.find(Purpose.GOALKEEPER);
         assertEquals(expected, actual);
     }
@@ -65,5 +64,4 @@ public class ClubManagerTest {
         List<Good> actual = clubManager.findMinPrice(Purpose.GOALKEEPER);
         assertEquals(expected, actual);
     }
-
 }
