@@ -3,17 +3,21 @@ package ua.lviv.iot.hockey.manager;
 
 import ua.lviv.iot.hockey.model.CompareByName;
 import ua.lviv.iot.hockey.model.CompareByNameDecrease;
-import ua.lviv.iot.hockey.model.CompareByPrice;
 import ua.lviv.iot.hockey.model.Good;
+import ua.lviv.iot.hockey.model.Purpose;
+import ua.lviv.iot.hockey.model.CompareByPrice;
 import ua.lviv.iot.hockey.model.CompareByPriceDecrease;
 import ua.lviv.iot.hockey.model.CompareForFindPrice;
-import ua.lviv.iot.hockey.model.Purpose;
+import ua.lviv.iot.hockey.model.HockeyPuck;
 
-import java.util.Collections;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.List;
+import java.util.LinkedList;
 import java.util.Comparator;
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Scanner;
+import java.util.Collections;
 
 
 public class ClubManager {
@@ -32,8 +36,10 @@ public class ClubManager {
         }
     }
 
+    public final static int COUNT_PARAMETRS_GOOD = 5;
+    public final static int COUNT_PARAMETRS_HOCKEY_PUCK = 7;
 
-    private List<Good> goods;
+    protected List<Good> goods;
 
     public ClubManager() {
         this.goods = new LinkedList<Good>();
@@ -94,7 +100,7 @@ public class ClubManager {
     public final void sortByProducer() {
         Collections.sort(goods, new Comparator<Good>() {
             @Override
-            public  int compare(final Good o1, final Good o2) {
+            public int compare(final Good o1, final Good o2) {
                 return o1.getProducer().compareTo(o2.getProducer());
             }
         });
@@ -104,8 +110,54 @@ public class ClubManager {
         goods.sort((Good o1, Good o2) -> o1.getMaterial().compareTo(o2.getMaterial()));
     }
 
+
+    public final String getHeaders() {
+        return "goods";
+    }
+
+    public final String toCSV() {
+        String s = "";
+        for (Good g : goods) {
+            s += g.toCSV();
+        }
+        return s;
+    }
+
+
+    public final void readFromFile(final String fileName) {
+        try {
+            FileInputStream inputStream = new FileInputStream(fileName);
+            Scanner scanner = new Scanner(inputStream);
+            scanner.useDelimiter(",");
+            scanner.nextLine();
+            this.goods.clear();
+            while (scanner.hasNext()) {
+                String result = scanner.nextLine();
+                String[] mass = result.split(",");
+                Good g = null;
+                switch (mass.length) {
+                    case COUNT_PARAMETRS_GOOD:
+                        g = new Good();
+                        break;
+                    case COUNT_PARAMETRS_HOCKEY_PUCK:
+                        g = new HockeyPuck();
+                    default:
+                        break;
+                }
+                g.parse(result);
+                goods.add(g);
+            }
+
+            scanner.close();
+        } catch (FileNotFoundException ex) {
+            System.out.println("File not found");
+            ex.getStackTrace();
+        }
+    }
+
+
     @Override
-    public  String toString() {
+    public String toString() {
         String res = "";
         for (Good g : this.goods) {
             res += g.toString() + "\n";

@@ -8,6 +8,7 @@ public class Good {
     private String material;
     private Purpose purpose;
 
+
     public Good() {
 
     }
@@ -70,14 +71,56 @@ public class Good {
         this.purpose = goal;
     }
 
+
+    public String getHeaders() {
+        return "name," + "priceInUAH," + "producer," + "producingCountry," + "material," + "purpose";
+    }
+
+    public String toCSV() {
+        return name + "," + priceInUAH + "," + producer + "," + producingCountry + "," + material + "," + purpose;
+    }
+
+
+    public void parse(final String s) {
+        System.out.println(s);
+        String[] mass = s.split(",");
+        try {
+            int n = 0;
+            this.name = mass[n];
+            System.out.println(mass[n]);
+            n++;
+            this.priceInUAH = Double.parseDouble(mass[n]);
+            System.out.println("" + priceInUAH);
+            n++;
+            this.producer = mass[n];
+            n++;
+            this.producingCountry = mass[n];
+            n++;
+            this.material = mass[n];
+            n++;
+            switch (mass[n]) {
+                case "GOALKEEPER":
+                    this.purpose = Purpose.GOALKEEPER;
+                    break;
+                case "FIELDPLAYER":
+                    this.purpose = Purpose.FIELDPLAYER;
+                default:
+                    this.purpose = Purpose.FIELDPLAYER;
+                    break;
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
     @Override
     public String toString() {
         return
-                "Name=" + name + ' ' +
-                        "PriceInUAH=" + priceInUAH + ' ' +
-                        "Producer=" + producer + ' ' +
-                        "ProducingCountry=" + producingCountry + ' ' +
-                        "Material=" + material + ' ' +
-                        "Purpose=" + purpose;
+                "Name=" + name + ' '
+                        + "PriceInUAH=" + priceInUAH + ' '
+                        + "Producer=" + producer + ' '
+                        + "ProducingCountry=" + producingCountry + ' '
+                        + "Material=" + material + ' '
+                        + "Purpose=" + purpose;
     }
 }
