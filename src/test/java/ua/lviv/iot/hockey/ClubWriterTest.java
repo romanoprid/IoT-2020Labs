@@ -1,35 +1,47 @@
 package ua.lviv.iot.hockey;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import ua.lviv.iot.hockey.manager.ClubManager;
+import ua.lviv.iot.hockey.manager.ClubWriter;
 import ua.lviv.iot.hockey.model.Good;
+import ua.lviv.iot.hockey.model.HockeyPuck;
 import ua.lviv.iot.hockey.model.Purpose;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ClubWriterTest extends ClubManager {
 
     @Test
-    public void writeReadFile() {
-        ClubManager clubManager = new ClubManager();
-        clubManager.add(new Good("Hockey",100,"North", "Ukraine",
-                "Leather", Purpose.GOALKEEPER));
-        clubManager.add(new Good("Sweater",100,"Gan", "Ukraine",
-                "Leather", Purpose.GOALKEEPER));
-        clubManager.add(new Good("Helmet",100,"Tiger", "Ukraine",
-                "Leather", Purpose.GOALKEEPER));
-       clubManager.readFromFile("C:\\Users\\User\\IdeaProjects\\Lab4\\src\\List.csv");
+    public void readFile() {
 
+
+        String input = "List.csv";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        Scanner scanner = new Scanner(System.in);
+        ClubManager clubManager = new ClubManager();
+        clubManager.add(new Good("Hockey", 100, "North", "Ukraine",
+                "Leather", Purpose.GOALKEEPER));
+        clubManager.add(new Good("Sweater", 100, "Gan", "Ukraine",
+                "Leather", Purpose.GOALKEEPER));
+        clubManager.add(new Good("Helmet", 100, "Tiger", "Ukraine",
+                "Leather", Purpose.GOALKEEPER));
     }
 
 
-
-
-
+    @Test
+    void writeToFile() {
+        ClubWriter clubWriter = new ClubWriter();
+        List<Good> goods = new ArrayList<Good>();
+        goods.add(new Good("Hockey", 100, "North", "Ukraine",
+                "Leather", Purpose.GOALKEEPER));
+        clubWriter.writeToFile(goods);
+    }
 }
