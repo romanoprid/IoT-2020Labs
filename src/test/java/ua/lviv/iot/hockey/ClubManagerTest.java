@@ -4,16 +4,20 @@ package ua.lviv.iot.hockey;
 import org.junit.jupiter.api.Test;
 import ua.lviv.iot.hockey.manager.ClubManager;
 import ua.lviv.iot.hockey.model.Good;
+import ua.lviv.iot.hockey.model.HockeyPuck;
 import ua.lviv.iot.hockey.model.Purpose;
 
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-public class ClubManagerTest {
+public class ClubManagerTest extends ClubManager {
 
     @Test
     public void add() {
@@ -57,11 +61,13 @@ public class ClubManagerTest {
                 "Leather", Purpose.GOALKEEPER));
         clubManager.add(new Good("Helmet", 150.0, "North", "Ukraine",
                 "Leather", Purpose.GOALKEEPER));
-        List<Good> expected = new LinkedList<>();
+        List<Good> expected = new LinkedList<Good>();
         expected.add(new Good("HockeyPuck", 150.0, "North", "Ukraine",
                 "Wood", Purpose.GOALKEEPER));
         expected.add(new Good("Helmet", 150.0, "North", "Ukraine", "Leather", Purpose.GOALKEEPER));
         List<Good> actual = clubManager.findMinPrice(Purpose.GOALKEEPER);
         assertEquals(expected, actual);
     }
+
+
 }
