@@ -72,12 +72,12 @@ public class Good {
     }
 
 
-    public String getHeaders() {
-        return "name," + "priceInUAH," + "producer," + "producingCountry," + "material," + "purpose";
+    public  String getHeaders() {
+        return "Name," + "priceInUAH," + "producer," + "producingCountry," + "material," + "purpose"+"\n";
     }
 
     public String toCSV() {
-        return name + "," + priceInUAH + "," + producer + "," + producingCountry + "," + material + "," + purpose;
+        return name + "," + priceInUAH + "," + producer + "," + producingCountry + "," + material + "," + purpose+"\n";
     }
 
 
