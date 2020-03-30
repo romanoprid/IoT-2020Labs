@@ -1,20 +1,15 @@
 package ua.lviv.iot.hockey;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import ua.lviv.iot.hockey.manager.ClubManager;
 import ua.lviv.iot.hockey.manager.ClubWriter;
 import ua.lviv.iot.hockey.model.Good;
-import ua.lviv.iot.hockey.model.HockeyPuck;
 import ua.lviv.iot.hockey.model.Purpose;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ClubWriterTest extends ClubManager {
 
@@ -41,12 +36,6 @@ class ClubWriterTest extends ClubManager {
         ClubWriter clubWriter = new ClubWriter();
         List<Good> goods = new ArrayList<Good>();
         goods.add(new Good("Hockey", 100, "North", "Ukraine",
-                "Leather", Purpose.GOALKEEPER));
-        goods.add(new Good("Hockey", 100, "North", "Ukraine",
-                "Leather", Purpose.GOALKEEPER));
-        goods.add(new Good("Sweater", 100, "Gan", "Ukraine",
-                "Leather", Purpose.GOALKEEPER));
-        goods.add(new Good("Helmet", 100, "Tiger", "Ukraine",
                 "Leather", Purpose.GOALKEEPER));
         clubWriter.writeToFile(goods);
     }
