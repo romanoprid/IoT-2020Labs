@@ -13,8 +13,12 @@ public class ClubWriter {
             try {
 
                 FileWriter pw = new FileWriter(csvOutputFile);
+                Good g = new Good();
+                pw.write(g.getHeaders());
                 for (Good good : goods) {
+
                     String toCSV = good.toCSV();
+
                     pw.write(toCSV);
                 }
                 pw.flush();
