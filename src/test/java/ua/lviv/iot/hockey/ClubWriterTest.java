@@ -37,6 +37,12 @@ class ClubWriterTest extends ClubManager {
         List<Good> goods = new ArrayList<Good>();
         goods.add(new Good("Hockey", 100, "North", "Ukraine",
                 "Leather", Purpose.GOALKEEPER));
+        goods.add(new Good("Hockey", 100, "North", "Ukraine",
+                "Leather", Purpose.GOALKEEPER));
+        goods.add(new Good("Sweater", 100, "Gan", "Ukraine",
+                "Leather", Purpose.GOALKEEPER));
+        goods.add(new Good("Helmet", 100, "Tiger", "Ukraine",
+                "Leather", Purpose.GOALKEEPER));
         clubWriter.writeToFile(goods);
     }
 }
