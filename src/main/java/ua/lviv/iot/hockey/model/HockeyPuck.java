@@ -3,6 +3,17 @@ package ua.lviv.iot.hockey.model;
 public class HockeyPuck extends Good {
     private double thickness;
 
+    private int id;
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public HockeyPuck() {
     }
 

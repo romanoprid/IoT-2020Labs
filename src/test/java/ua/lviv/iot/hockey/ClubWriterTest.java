@@ -1,20 +1,15 @@
 package ua.lviv.iot.hockey;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import ua.lviv.iot.hockey.manager.ClubManager;
 import ua.lviv.iot.hockey.manager.ClubWriter;
 import ua.lviv.iot.hockey.model.Good;
-import ua.lviv.iot.hockey.model.HockeyPuck;
 import ua.lviv.iot.hockey.model.Purpose;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ClubWriterTest extends ClubManager {
 
