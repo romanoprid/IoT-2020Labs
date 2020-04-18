@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ua.lviv.iot.spring.database.rest.dataaccess.HockeyPuckRepository;
 import ua.lviv.iot.spring.database.rest.HockeyPuck;
+import ua.lviv.iot.spring.database.rest.model.Purpose;
 
 import java.util.List;
 
@@ -14,41 +15,35 @@ public class HockeyPuckService {
     @Autowired
     private HockeyPuckRepository hockeyPuckRepository;
 
-    public HockeyPuck createHockeyPuck(HockeyPuck hockeyPuck) {
-
+    public HockeyPuck create(HockeyPuck hockeyPuck) {
         return hockeyPuckRepository.save(hockeyPuck);
     }
 
-    public ResponseEntity<HockeyPuck> getHockeyPuck(Integer hockeyPuckId) {
-        if (hockeyPuckRepository.existsById(hockeyPuckId)) {
-            HockeyPuck selectedHockeyPuck = hockeyPuckRepository.findById(hockeyPuckId).get();
-            return new ResponseEntity<HockeyPuck>(selectedHockeyPuck, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<HockeyPuck>(HttpStatus.NOT_FOUND);
-        }
+    public HockeyPuck findById(Integer id) {
+        return hockeyPuckRepository.findById(id).orElse(null);
     }
 
-    public ResponseEntity<HockeyPuck> updateHockeyPuck(HockeyPuck hockeyPuckToUpdate, Integer hockeyPuckId) {
-        if (hockeyPuckRepository.existsById(hockeyPuckId)) {
-            hockeyPuckToUpdate.setId(hockeyPuckId);
-            HockeyPuck updatedHockeyPuck = hockeyPuckRepository.save(hockeyPuckToUpdate);
-            return new ResponseEntity<HockeyPuck>(updatedHockeyPuck, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<HockeyPuck>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    public List<HockeyPuck> getAllHockeyPucks() {
+    public List<HockeyPuck> findAll() {
         return hockeyPuckRepository.findAll();
     }
 
-    public HttpStatus deleteHockeyPuck(Integer hockeyPuckId) {
+    public HockeyPuck updateHockeyPuck(HockeyPuck hockeyPuck, Integer hockeyPuckId) {
         if (hockeyPuckRepository.existsById(hockeyPuckId)) {
-            hockeyPuckRepository.deleteById(hockeyPuckId);
-            return HttpStatus.OK;
-        } else {
-            return HttpStatus.NOT_FOUND;
+            HockeyPuck oldHockeyPuck = new HockeyPuck(hockeyPuckRepository.findById(hockeyPuckId).get());
+            hockeyPuck.setId(hockeyPuckId);
+            hockeyPuckRepository.save(hockeyPuck);
+            return oldHockeyPuck;
         }
+        else {
+            return null;
+        }
+    }
+
+
+    public HockeyPuck delete(Integer id) {
+        HockeyPuck hockeyPuck = hockeyPuckRepository.findById(id).get();
+        hockeyPuckRepository.deleteById(id);
+        return hockeyPuck;
     }
 }
 

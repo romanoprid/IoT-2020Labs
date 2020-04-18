@@ -9,17 +9,23 @@ import javax.persistence.*;
 
 public class HockeyPuck extends Good {
     private double thickness;
+
+
+
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
 
-    private int id;
+    private Integer id;
+
+    public HockeyPuck(HockeyPuck hockeyPuck) {
+    }
 
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

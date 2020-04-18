@@ -18,34 +18,50 @@ import java.util.List;
 
 public class HockeyPuckController {
 
+
     @Autowired
-    private HockeyPuckService hockeyPuckrService;
+    private HockeyPuckService hockeyPuckService;
 
     @GetMapping
     public List<HockeyPuck> getAllHockeyPucks() {
-        return hockeyPuckrService.getAllHockeyPucks();
+        return hockeyPuckService.findAll();
     }
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<HockeyPuck> getHockeyPuck(final @PathVariable("id") Integer hockeyPuckId) {
-        return hockeyPuckrService.getHockeyPuck(hockeyPuckId);
+        HockeyPuck hockeyPuck = hockeyPuckService.findById(hockeyPuckId);
+        if (hockeyPuck != null) {
+            return new ResponseEntity<>(hockeyPuck, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+//        return hockeyPuckService.getHockeyPuck(hockeyPuckId);
     }
 
     @PostMapping
-    public HockeyPuck createHockeyPuck(final @RequestBody HockeyPuck newHockeyPuck) {
-        return hockeyPuckrService.createHockeyPuck(newHockeyPuck);
-    }
+    public ResponseEntity<HockeyPuck> createHockeyPuck(@RequestBody HockeyPuck hockeyPuck) {
+            HockeyPuck newHockeyPuck = hockeyPuckService.create(hockeyPuck);
+            if (newHockeyPuck != null) {
+                return new ResponseEntity<>(newHockeyPuck, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }
 
-    @PutMapping(path = "/{id}")
-    public ResponseEntity<HockeyPuck> updateHockeyPuck(final @PathVariable("id") Integer hockeyPuckId,
-                                                       final @RequestBody HockeyPuck hockeyPuck) {
-        return hockeyPuckrService.updateHockeyPuck(hockeyPuck, hockeyPuckId);
-    }
+
+
+
+
+
+
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<HockeyPuck> deleteHockeyPuck(final @PathVariable("id") Integer hockeyPuckId) {
-        HttpStatus status = hockeyPuckrService.deleteHockeyPuck(hockeyPuckId);
-        return ResponseEntity.status(status).build();
+        if (hockeyPuckService.delete(hockeyPuckId) != null) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }
 
